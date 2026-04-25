@@ -11,5 +11,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [mdx(), sitemap()],
-  base: "/turtle-love",
+  base: "/seanbaughsite",
 });
