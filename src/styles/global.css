@@ -1,0 +1,96 @@
+@import '@fontsource-variable/inter' layer(base);
+@import '@fontsource-variable/newsreader' layer(base);
+@import '@fontsource-variable/newsreader/wght-italic.css' layer(base);
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palette: deep navy, purple-grey, coral, gold */
+:root {
+    --color-navy:   #1a1040;
+    --color-purple: #3d3356;
+    --color-coral:  #ff5f3f;
+    --color-gold:   #ffcc55;
+
+    --text-main:   #f0eef8;
+    --bg-main:     #1a1040;
+    --bg-muted:    #251850;
+    --border-main: #3d3356;
+
+    --accent:      var(--color-coral);
+    --accent-alt:  var(--color-gold);
+}
+
+/* Light mode — inverted but still palette-consistent */
+html.light {
+    --text-main:   #1a1040;
+    --bg-main:     #f5f3fc;
+    --bg-muted:    #eae7f5;
+    --border-main: #3d3356;
+}
+
+@theme inline {
+    --font-sans: 'Inter Variable', sans-serif;
+    --font-serif: 'Newsreader Variable', serif;
+    --text-color-main: var(--text-main);
+    --background-color-main: var(--bg-main);
+    --background-color-muted: var(--bg-muted);
+    --border-color-main: var(--border-main);
+    --color-accent: var(--color-coral);
+    --color-accent-alt: var(--color-gold);
+}
+
+@layer utilities {
+    .prose {
+        --tw-prose-body: var(--text-color-main);
+        --tw-prose-headings: var(--text-color-main);
+        --tw-prose-lead: var(--text-color-main);
+        --tw-prose-links: #ffcc55;
+        --tw-prose-bold: var(--text-color-main);
+        --tw-prose-counters: var(--text-color-main);
+        --tw-prose-bullets: #ff5f3f;
+        --tw-prose-hr: var(--border-color-main);
+        --tw-prose-quotes: var(--text-color-main);
+        --tw-prose-quote-borders: #ff5f3f;
+        --tw-prose-captions: var(--text-color-main);
+        --tw-prose-kbd: var(--text-color-main);
+        --tw-prose-code: #ffcc55;
+        --tw-prose-th-borders: var(--border-color-main);
+        --tw-prose-td-borders: var(--border-color-main);
+    }
+
+    .prose a {
+        @apply underline font-normal decoration-1 underline-offset-2 decoration-dashed hover:decoration-solid;
+        color: #ffcc55;
+    }
+
+    .prose :where(h1, h2, h3, h4, h5, h6) {
+        @apply font-serif font-medium;
+    }
+
+    .prose :where(code, strong) {
+        @apply font-medium;
+    }
+
+    .prose blockquote {
+        @apply font-serif font-normal italic border-none pl-0 text-[1.375em] leading-snug sm:text-[1.66667em];
+        border-left: 3px solid #ff5f3f !important;
+        padding-left: 1rem !important;
+    }
+
+    /* Accent color on section headings */
+    .section-heading {
+        position: relative;
+        display: inline-block;
+    }
+    .section-heading::after {
+        content: '';
+        display: block;
+        width: 2rem;
+        height: 2px;
+        background: #ffcc55;
+        margin-top: 0.4rem;
+    }
+}
