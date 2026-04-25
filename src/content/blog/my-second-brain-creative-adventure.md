@@ -2,6 +2,7 @@
 title: My Second Brain Creative Adventure
 excerpt: How I discovered that Obsidian and Claude could actually help me in my day-to-day creative work as a conductor and concert programmer — and why this time it might actually stick.
 publishDate: 'Apr 25 2026'
+isFeatured: true
 tags:
   - AI
   - Obsidian
