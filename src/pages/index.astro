@@ -21,7 +21,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
         featuredPhotos?.length > 0 && (
             <div class="photo-band">
                 <div class="photo-band-inner">
-                    <h2 class="section-heading mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Photography</h2>
+                    <h2 class="section-heading mb-12 font-serif text-xl sm:mb-16 sm:text-2xl">Photography</h2>
                     <div class="featured-photo-grid">
                         {featuredPhotos.map((photo, i) => (
                             <a
@@ -39,7 +39,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                                     />
                                 </div>
                                 <div class="mt-2">
-                                    <p class="font-serif text-sm italic opacity-80 group-hover:text-[#ffcc55] transition-colors">
+                                    <p class="font-serif text-sm opacity-80 group-hover:text-[#ffcc55] transition-colors">
                                         {photo.data.title}
                                     </p>
                                     {photo.data.location && (
@@ -59,7 +59,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
     {
         featuredPosts?.length > 0 && (
             <div class="mb-16 sm:mb-24">
-                <h2 class="section-heading mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Writing</h2>
+                <h2 class="section-heading mb-12 font-serif text-xl sm:mb-16 sm:text-2xl">Writing</h2>
                 {featuredPosts.map((post) => (
                     <PostPreview post={post} class="mb-10 sm:mb-12" headingLevel="h3" />
                 ))}

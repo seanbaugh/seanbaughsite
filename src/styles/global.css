@@ -1,6 +1,6 @@
 @import '@fontsource-variable/inter' layer(base);
-@import '@fontsource-variable/newsreader' layer(base);
-@import '@fontsource-variable/newsreader/wght-italic.css' layer(base);
+@import '@fontsource/lusitana/400.css' layer(base);
+@import '@fontsource/lusitana/700.css' layer(base);
 
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
@@ -33,7 +33,7 @@ html.light {
 
 @theme inline {
     --font-sans: 'Inter Variable', sans-serif;
-    --font-serif: 'Newsreader Variable', serif;
+    --font-serif: 'Lusitana', serif;
     --text-color-main: var(--text-main);
     --background-color-main: var(--bg-main);
     --background-color-muted: var(--bg-muted);

@@ -1,6 +1,7 @@
 ---
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import newsreaderWoff2 from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
+import lusitana400Woff2 from '@fontsource/lusitana/files/lusitana-latin-400-normal.woff2?url';
+import lusitana700Woff2 from '@fontsource/lusitana/files/lusitana-latin-700-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import { base } from 'astro:config/client';
 import siteConfig from '../data/site-config';
@@ -64,7 +65,8 @@ function formatCanonicalURL(url: string | URL) {
 
 <!-- Fonts -->
 <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin="anonymous" />
-<link rel="preload" as="font" type="font/woff2" href={newsreaderWoff2} crossorigin="anonymous" />
+<link rel="preload" as="font" type="font/woff2" href={lusitana400Woff2} crossorigin="anonymous" />
+<link rel="preload" as="font" type="font/woff2" href={lusitana700Woff2} crossorigin="anonymous" />
 
 <!-- Low Priority Global Metadata -->
 <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
