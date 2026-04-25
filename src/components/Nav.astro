@@ -3,7 +3,11 @@ import NavLink from './NavLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import siteConfig from '../data/site-config';
 
-const navLinks = siteConfig.headerNavLinks ?? [];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const navLinks = (siteConfig.headerNavLinks ?? []).map((link) => ({
+    ...link,
+    href: link.href.startsWith('http') ? link.href : `${base}${link.href}`,
+}));
 ---
 
 <nav class="relative min-h-10 pt-4 pb-12 sm:min-h-14 sm:pb-20 md:pt-8" aria-label="Primary navigation">

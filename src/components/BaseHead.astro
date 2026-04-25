@@ -2,6 +2,7 @@
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import newsreaderWoff2 from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
 import { getImage } from 'astro:assets';
+import { base } from 'astro:config/client';
 import siteConfig from '../data/site-config';
 import type { ImageInput } from '../types';
 
@@ -66,9 +67,9 @@ function formatCanonicalURL(url: string | URL) {
 <link rel="preload" as="font" type="font/woff2" href={newsreaderWoff2} crossorigin="anonymous" />
 
 <!-- Low Priority Global Metadata -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS" />
+<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+<link rel="sitemap" href={`${base}/sitemap-index.xml`} />
+<link rel="alternate" type="application/rss+xml" href={`${base}/rss.xml`} title="RSS" />
 
 <!-- Page Metadata -->
 <link rel="canonical" href={formatCanonicalURL(canonicalURL)} />
