@@ -19,33 +19,33 @@ const siteConfig: SiteConfig = {
   headerNavLinks: [
     {
       text: "Home",
-      href: "/",
+      href: "/seanbaughsite/",
     },
     {
       text: "Projects",
-      href: "/projects",
+      href: "/seanbaughsite/projects",
     },
     {
       text: "Blog",
-      href: "/blog",
+      href: "/seanbaughsite/blog",
     },
     {
       text: "Tags",
-      href: "/tags",
+      href: "/seanbaughsite/tags",
     },
   ],
   footerNavLinks: [
     {
       text: "About",
-      href: "/about",
+      href: "/seanbaughsite/about",
     },
     {
       text: "Contact",
-      href: "/contact",
+      href: "/seanbaughsite/contact",
     },
     {
       text: "Terms",
-      href: "/terms",
+      href: "/seanbaughsite/terms",
     },
     {
       text: "Download theme",
@@ -76,7 +76,7 @@ const siteConfig: SiteConfig = {
     actions: [
       {
         text: "Get in Touch",
-        href: "/contact",
+        href: "/seanbaughsite/contact",
       },
     ],
   },

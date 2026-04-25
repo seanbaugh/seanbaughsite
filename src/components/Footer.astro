@@ -1,12 +1,8 @@
 ---
 import siteConfig from '../data/site-config';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const socialLinks = siteConfig.socialLinks ?? [];
-const navLinks = (siteConfig.footerNavLinks ?? []).map((link) => ({
-    ...link,
-    href: link.href.startsWith('http') ? link.href : `${base}${link.href}`,
-}));
+const navLinks = siteConfig.footerNavLinks ?? [];
 const currentYear = new Date().getFullYear();
 ---
 
