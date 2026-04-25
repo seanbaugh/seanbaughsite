@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <defs>
+    <pattern id="photo" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <!-- Large aperture circle: outer ring -->
+      <circle cx="60" cy="60" r="44" fill="none" stroke="rgba(255,204,85,0.07)" stroke-width="1"/>
+      <!-- Inner aperture ring -->
+      <circle cx="60" cy="60" r="32" fill="none" stroke="rgba(255,95,63,0.06)" stroke-width="0.75"/>
+      <!-- Aperture blades: 8 thin lines radiating from center -->
+      <line x1="60" y1="16" x2="60" y2="104" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+      <line x1="16" y1="60" x2="104" y2="60" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+      <line x1="29" y1="29" x2="91" y2="91" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+      <line x1="91" y1="29" x2="29" y2="91" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+      <!-- Corner anchor dots -->
+      <circle cx="0"   cy="0"   r="1.2" fill="rgba(255,204,85,0.14)"/>
+      <circle cx="120" cy="0"   r="1.2" fill="rgba(255,204,85,0.14)"/>
+      <circle cx="0"   cy="120" r="1.2" fill="rgba(255,204,85,0.14)"/>
+      <circle cx="120" cy="120" r="1.2" fill="rgba(255,204,85,0.14)"/>
+      <!-- Mid-edge dots -->
+      <circle cx="60"  cy="0"   r="0.9" fill="rgba(255,204,85,0.09)"/>
+      <circle cx="60"  cy="120" r="0.9" fill="rgba(255,204,85,0.09)"/>
+      <circle cx="0"   cy="60"  r="0.9" fill="rgba(255,204,85,0.09)"/>
+      <circle cx="120" cy="60"  r="0.9" fill="rgba(255,204,85,0.09)"/>
+      <!-- Center pinpoint -->
+      <circle cx="60" cy="60" r="1.5" fill="rgba(255,95,63,0.18)"/>
+    </pattern>
+  </defs>
+  <rect width="120" height="120" fill="url(#photo)"/>
+</svg>

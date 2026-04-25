@@ -1,9 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro';
 import Hero from '../components/Hero.astro';
 import PostPreview from '../components/PostPreview.astro';
-import ProjectPreview from '../components/ProjectPreview.astro';
 import siteConfig from '../data/site-config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sortItemsByDateDesc } from '../utils/data-utils';
@@ -11,21 +11,47 @@ import { sortItemsByDateDesc } from '../utils/data-utils';
 const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
 const featuredPosts = posts.filter(({ data }) => data.isFeatured);
 
-const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
-const featuredProjects = projects.filter(({ data }) => data.isFeatured);
+const photos = (await getCollection('photography')).sort(sortItemsByDateDesc);
+const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
 ---
 
 <BaseLayout description={siteConfig.description}>
     <Hero {...siteConfig.hero} fullBleed={true} />
     {
-        featuredProjects?.length > 0 && (
-            <div class="mb-16 sm:mb-24">
-                <h2 class="section-heading mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Projects</h2>
-                {featuredProjects.map((project) => (
-                    <ProjectPreview project={project} class="mb-10 sm:mb-12" headingLevel="h3" />
-                ))}
-                <div class="mt-12 sm:mt-16">
-                    <Button href="/seanbaughsite/projects">View All Projects</Button>
+        featuredPhotos?.length > 0 && (
+            <div class="photo-band">
+                <div class="photo-band-inner">
+                    <h2 class="section-heading mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Photography</h2>
+                    <div class="featured-photo-grid">
+                        {featuredPhotos.map((photo, i) => (
+                            <a
+                                href="/seanbaughsite/photography"
+                                class:list={['featured-photo-item group block overflow-hidden', i === 0 ? 'featured-photo-large' : '']}
+                            >
+                                <div class="photo-frame w-full h-full overflow-hidden bg-[var(--bg-main)]">
+                                    <Image
+                                        src={photo.data.coverImage.src}
+                                        alt={photo.data.coverImage.alt ?? photo.data.title}
+                                        width={800}
+                                        height={600}
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        loading={i === 0 ? 'eager' : 'lazy'}
+                                    />
+                                </div>
+                                <div class="mt-2">
+                                    <p class="font-serif text-sm italic opacity-80 group-hover:text-[#ffcc55] transition-colors">
+                                        {photo.data.title}
+                                    </p>
+                                    {photo.data.location && (
+                                        <p class="font-sans text-xs tracking-widest uppercase opacity-40 mt-0.5">{photo.data.location}</p>
+                                    )}
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    <div class="mt-12 sm:mt-16">
+                        <Button href="/seanbaughsite/photography">View All Photos</Button>
+                    </div>
                 </div>
             </div>
         )
@@ -44,3 +70,79 @@ const featuredProjects = projects.filter(({ data }) => data.isFeatured);
         )
     }
 </BaseLayout>
+
+<style>
+    /* Full-bleed band — breaks out of max-w-3xl, re-constrains content inside */
+    .photo-band {
+        position: relative;
+        width: 100vw;
+        left: 50%;
+        margin-left: -50vw;
+        background-color: var(--bg-muted);
+        border-top: 1px solid var(--border-main);
+        border-bottom: 1px solid var(--border-main);
+        margin-bottom: 4rem;
+        overflow: hidden;
+    }
+
+    /* Aperture pattern overlay */
+    .photo-band::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/pattern-photo.svg');
+        background-repeat: repeat;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .photo-band-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (min-width: 640px) {
+        .photo-band {
+            margin-bottom: 6rem;
+        }
+    }
+
+    .photo-band-inner {
+        max-width: 48rem;   /* matches BaseLayout's max-w-3xl (768px) */
+        margin: 0 auto;
+        padding: 3rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .photo-band-inner {
+            padding: 4rem 2rem;
+        }
+    }
+
+    .featured-photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .featured-photo-item .photo-frame {
+        aspect-ratio: 4 / 3;
+    }
+
+    .featured-photo-large .photo-frame {
+        aspect-ratio: 4 / 3;
+    }
+
+    @media (max-width: 640px) {
+        .featured-photo-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .featured-photo-large {
+            grid-column: 1 / -1;
+        }
+        .featured-photo-large .photo-frame {
+            aspect-ratio: 16 / 9;
+        }
+    }
+</style>
