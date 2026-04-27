@@ -27,7 +27,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                             <p class="gallery-eyebrow">Visual Journal</p>
                             <h2 class="gallery-heading font-serif">Latest Galleries</h2>
                         </div>
-                        <a href="/photography" class="gallery-view-all">
+                        <a href={`${import.meta.env.BASE_URL}photography`} class="gallery-view-all">
                             View all
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
@@ -37,7 +37,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                     <div class="gallery-row gallery-row-1">
                         {photos.slice(0, 3).map((photo, i) => (
                             <a
-                                href={`/photography/${photo.id}`}
+                                href={`${import.meta.env.BASE_URL}photography/${photo.id}`}
                                 class:list={['gallery-card group', i === 0 ? 'gallery-card-hero' : 'gallery-card-thumb']}
                             >
                                 <div class="gallery-img-wrap">
@@ -65,7 +65,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                     <div class="gallery-row gallery-row-2">
                         {photos.slice(3, 7).map((photo) => (
                             <a
-                                href={`/photography/${photo.id}`}
+                                href={`${import.meta.env.BASE_URL}photography/${photo.id}`}
                                 class="gallery-card gallery-card-sm group"
                             >
                                 <div class="gallery-img-wrap">
