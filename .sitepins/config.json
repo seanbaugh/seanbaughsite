@@ -1,6 +1,6 @@
 {
   "content": "src/content",
-  "media": "public/images",
+  "media": "src/assets/images",
   "public": "public",
   "configs": [
     "tsconfig.json"
