@@ -42,14 +42,16 @@ const { Content } = await render(photo);
 
         <!-- Hero image -->
         <div class="gallery-hero">
-            <Image
-                src={coverImage.src}
-                alt={coverImage.alt ?? title}
-                width={1200}
-                height={800}
-                class="gallery-hero-img"
-                loading="eager"
-            />
+            {coverImage?.src && (
+                <Image
+                    src={coverImage.src}
+                    alt={coverImage.alt ?? title}
+                    width={1200}
+                    height={800}
+                    class="gallery-hero-img"
+                    loading="eager"
+                />
+            )}
         </div>
 
         <!-- Meta -->
