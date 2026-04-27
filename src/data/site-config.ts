@@ -22,6 +22,10 @@ const siteConfig: SiteConfig = {
       href: "/seanbaughsite/",
     },
     {
+      text: "About",
+      href: "/seanbaughsite/about",
+    },
+    {
       text: "Photography",
       href: "/seanbaughsite/photography",
     },
