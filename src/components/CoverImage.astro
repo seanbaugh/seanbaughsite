@@ -1,8 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
-    src: string | ImageMetadata | undefined;
+    src?: string;
     alt?: string;
     width?: number;
     height?: number;
@@ -11,31 +9,17 @@ interface Props {
 }
 
 const { src, alt = '', width = 800, height = 600, class: className, loading = 'lazy' } = Astro.props;
-
-// Nothing to render if src is empty or missing
-const hasImage = src && (typeof src !== 'string' || src.trim() !== '');
-// A string that starts with http/https or // is a remote URL — use plain <img>
-const isRemote = typeof src === 'string';
+const hasImage = src && src.trim() !== '';
 ---
 
-{hasImage && isRemote && (
+{hasImage && (
     <img
-        src={src as string}
+        src={src}
         alt={alt}
         width={width}
         height={height}
         class={className}
         loading={loading}
         decoding="async"
-    />
-)}
-{hasImage && !isRemote && (
-    <Image
-        src={src as ImageMetadata}
-        alt={alt}
-        width={width}
-        height={height}
-        class={className}
-        loading={loading}
     />
 )}
