@@ -33,7 +33,7 @@ const { Content } = await render(photo);
 <BaseLayout title={title} description={description} showHeader={false}>
     <div class="gallery-page">
         <!-- Back link -->
-        <a href={`${import.meta.env.BASE_URL}photography`} class="back-link">
+        <a href={`/seanbaughsite/photography`} class="back-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M19 12H5M12 5l-7 7 7 7"/>
             </svg>
@@ -82,13 +82,13 @@ const { Content } = await render(photo);
         <nav class="gallery-nav" aria-label="Gallery navigation">
             <div class="gallery-nav-inner">
                 {prevPhoto ? (
-                    <a href={`${import.meta.env.BASE_URL}photography/${prevPhoto.id}`} class="gallery-nav-link gallery-nav-prev">
+                    <a href={`/seanbaughsite/photography/${prevPhoto.id}`} class="gallery-nav-link gallery-nav-prev">
                         <span class="gallery-nav-label">← Previous</span>
                         <span class="gallery-nav-title font-serif">{prevPhoto.data.title}</span>
                     </a>
                 ) : <div />}
                 {nextPhoto ? (
-                    <a href={`${import.meta.env.BASE_URL}photography/${nextPhoto.id}`} class="gallery-nav-link gallery-nav-next">
+                    <a href={`/seanbaughsite/photography/${nextPhoto.id}`} class="gallery-nav-link gallery-nav-next">
                         <span class="gallery-nav-label">Next →</span>
                         <span class="gallery-nav-title font-serif">{nextPhoto.data.title}</span>
                     </a>
@@ -97,7 +97,7 @@ const { Content } = await render(photo);
         </nav>
 
         <div class="mt-12 sm:mt-16">
-            <Button href={`${import.meta.env.BASE_URL}photography`}>View All Galleries</Button>
+            <Button href={`/seanbaughsite/photography`}>View All Galleries</Button>
         </div>
     </div>
 </BaseLayout>

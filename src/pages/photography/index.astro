@@ -14,7 +14,7 @@ const photos = (await getCollection('photography')).sort(sortItemsByDateDesc);
 
         <div class="photo-grid">
             {photos.map((photo) => (
-                <a href={`${import.meta.env.BASE_URL}photography/${photo.id}`} class="photo-item group block">
+                <a href={`/seanbaughsite/photography/${photo.id}`} class="photo-item group block">
                     <div class="photo-frame overflow-hidden">
                         <Image
                             src={photo.data.coverImage.src}
