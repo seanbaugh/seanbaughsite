@@ -1,0 +1,66 @@
+{
+  "file": "src/content/pages/about.md",
+  "name": "pages",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "value": "",
+      "isIgnored": false,
+      "defaultValue": ""
+    },
+    {
+      "name": "seo",
+      "label": "Seo",
+      "type": "object",
+      "isIgnored": false,
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "isIgnored": false,
+          "defaultValue": ""
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "value": "",
+          "isIgnored": false,
+          "defaultValue": ""
+        },
+        {
+          "name": "image",
+          "label": "Image",
+          "type": "object",
+          "isIgnored": false,
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "src",
+              "label": "Src",
+              "type": "media",
+              "value": "",
+              "isIgnored": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "alt",
+              "label": "Alt",
+              "type": "string",
+              "value": "",
+              "isIgnored": false,
+              "defaultValue": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
