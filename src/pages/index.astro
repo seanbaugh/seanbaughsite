@@ -42,8 +42,8 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                             >
                                 <div class="gallery-img-wrap">
                                     <CoverImage
-                                        src={photo.data.image}
-                                        alt={photo.data.imageAlt ?? photo.data.title}
+                                        src={photo.data.coverImage?.src}
+                                        alt={photo.data.coverImage?.alt ?? photo.data.title}
                                         width={i === 0 ? 900 : 500}
                                         height={i === 0 ? 600 : 400}
                                         class="gallery-img"
@@ -70,8 +70,8 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                             >
                                 <div class="gallery-img-wrap">
                                     <CoverImage
-                                        src={photo.data.image}
-                                        alt={photo.data.imageAlt ?? photo.data.title}
+                                        src={photo.data.coverImage?.src}
+                                        alt={photo.data.coverImage?.alt ?? photo.data.title}
                                         width={500}
                                         height={380}
                                         class="gallery-img"

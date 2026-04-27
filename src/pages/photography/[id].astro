@@ -25,7 +25,7 @@ type Props = {
 };
 
 const { photo, prevPhoto, nextPhoto } = Astro.props;
-const { title, description, image, imageAlt, publishDate, location } = photo.data;
+const { title, description, coverImage, publishDate, location } = photo.data;
 
 const { Content } = await render(photo);
 ---
@@ -43,8 +43,8 @@ const { Content } = await render(photo);
         <!-- Hero image -->
         <div class="gallery-hero">
             <CoverImage
-                src={image}
-                alt={imageAlt ?? title}
+                src={coverImage?.src}
+                alt={coverImage?.alt ?? title}
                 width={1200}
                 height={800}
                 class="gallery-hero-img"
