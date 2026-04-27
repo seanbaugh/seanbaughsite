@@ -18,39 +18,75 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
 <BaseLayout description={siteConfig.description}>
     <Hero {...siteConfig.hero} fullBleed={true} />
     {
-        featuredPhotos?.length > 0 && (
+        photos?.length > 0 && (
             <div class="photo-band">
                 <div class="photo-band-inner">
-                    <h2 class="section-heading mb-12 font-serif text-xl sm:mb-16 sm:text-2xl">Photography</h2>
-                    <div class="featured-photo-grid">
-                        {featuredPhotos.map((photo, i) => (
+                    <!-- Header row -->
+                    <div class="gallery-header">
+                        <div>
+                            <p class="gallery-eyebrow">Visual Journal</p>
+                            <h2 class="gallery-heading font-serif">Latest Galleries</h2>
+                        </div>
+                        <a href="/photography" class="gallery-view-all">
+                            View all
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Row 1: hero + 2 thumbnails -->
+                    <div class="gallery-row gallery-row-1">
+                        {photos.slice(0, 3).map((photo, i) => (
                             <a
-                                href="/seanbaughsite/photography"
-                                class:list={['featured-photo-item group block overflow-hidden', i === 0 ? 'featured-photo-large' : '']}
+                                href={`/photography/${photo.id}`}
+                                class:list={['gallery-card group', i === 0 ? 'gallery-card-hero' : 'gallery-card-thumb']}
                             >
-                                <div class="photo-frame w-full h-full overflow-hidden bg-[var(--bg-main)]">
+                                <div class="gallery-img-wrap">
                                     <Image
                                         src={photo.data.coverImage.src}
                                         alt={photo.data.coverImage.alt ?? photo.data.title}
-                                        width={800}
-                                        height={600}
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        width={i === 0 ? 900 : 500}
+                                        height={i === 0 ? 600 : 400}
+                                        class="gallery-img"
                                         loading={i === 0 ? 'eager' : 'lazy'}
                                     />
-                                </div>
-                                <div class="mt-2">
-                                    <p class="font-serif text-sm opacity-80 group-hover:text-[#ffcc55] transition-colors">
-                                        {photo.data.title}
-                                    </p>
-                                    {photo.data.location && (
-                                        <p class="font-sans text-xs tracking-widest uppercase opacity-40 mt-0.5">{photo.data.location}</p>
-                                    )}
+                                    <div class="gallery-overlay" aria-hidden="true"></div>
+                                    <div class="gallery-label">
+                                        <span class="gallery-label-title font-serif">{photo.data.title}</span>
+                                        {photo.data.location && (
+                                            <span class="gallery-label-loc">{photo.data.location}</span>
+                                        )}
+                                    </div>
                                 </div>
                             </a>
                         ))}
                     </div>
-                    <div class="mt-12 sm:mt-16">
-                        <Button href="/seanbaughsite/photography">View All Photos</Button>
+
+                    <!-- Row 2: 4 equal thumbnails -->
+                    <div class="gallery-row gallery-row-2">
+                        {photos.slice(3, 7).map((photo) => (
+                            <a
+                                href={`/photography/${photo.id}`}
+                                class="gallery-card gallery-card-sm group"
+                            >
+                                <div class="gallery-img-wrap">
+                                    <Image
+                                        src={photo.data.coverImage.src}
+                                        alt={photo.data.coverImage.alt ?? photo.data.title}
+                                        width={500}
+                                        height={380}
+                                        class="gallery-img"
+                                        loading="lazy"
+                                    />
+                                    <div class="gallery-overlay" aria-hidden="true"></div>
+                                    <div class="gallery-label">
+                                        <span class="gallery-label-title font-serif">{photo.data.title}</span>
+                                        {photo.data.location && (
+                                            <span class="gallery-label-loc">{photo.data.location}</span>
+                                        )}
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -72,7 +108,7 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
 </BaseLayout>
 
 <style>
-    /* Full-bleed band — breaks out of max-w-3xl, re-constrains content inside */
+    /* ─── Full-bleed band ─── */
     .photo-band {
         position: relative;
         width: 100vw;
@@ -85,22 +121,6 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
         overflow: hidden;
     }
 
-    /* Aperture pattern overlay */
-    .photo-band::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: url('/pattern-photo.svg');
-        background-repeat: repeat;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .photo-band-inner {
-        position: relative;
-        z-index: 1;
-    }
-
     @media (min-width: 640px) {
         .photo-band {
             margin-bottom: 6rem;
@@ -108,9 +128,9 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
     }
 
     .photo-band-inner {
-        max-width: 48rem;   /* matches BaseLayout's max-w-3xl (768px) */
+        max-width: 72rem;
         margin: 0 auto;
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
     }
 
     @media (min-width: 768px) {
@@ -119,29 +139,164 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
         }
     }
 
-    .featured-photo-grid {
+    /* ─── Section header ─── */
+    .gallery-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 1.75rem;
+    }
+
+    .gallery-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0.45;
+        margin-bottom: 0.3rem;
+    }
+
+    .gallery-heading {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.1;
+    }
+
+    .gallery-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+        white-space: nowrap;
+        padding-bottom: 0.2rem;
+    }
+    .gallery-view-all:hover {
+        opacity: 1;
+    }
+
+    /* ─── Row 1: hero (left, 2/3 wide) + 2 stacked thumbs (right, 1/3 wide) ─── */
+    .gallery-row {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
     }
 
-    .featured-photo-item .photo-frame {
+    .gallery-row-1 {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    .gallery-card-hero {
+        grid-row: 1 / 3;
+    }
+
+    .gallery-card-thumb {
+        /* fills one of the two right slots */
+    }
+
+    /* ─── Row 2: 4 equal columns ─── */
+    .gallery-row-2 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* ─── Individual cards ─── */
+    .gallery-card {
+        display: block;
+        overflow: hidden;
+    }
+
+    .gallery-img-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--bg-main);
+    }
+
+    .gallery-card-hero .gallery-img-wrap {
         aspect-ratio: 4 / 3;
     }
 
-    .featured-photo-large .photo-frame {
+    .gallery-card-thumb .gallery-img-wrap {
+        aspect-ratio: 16 / 9;
+    }
+
+    .gallery-card-sm .gallery-img-wrap {
         aspect-ratio: 4 / 3;
     }
 
+    .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .group:hover .gallery-img {
+        transform: scale(1.05);
+    }
+
+    /* Dark overlay that fades in on hover */
+    .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+        opacity: 0.5;
+        transition: opacity 0.35s;
+    }
+    .group:hover .gallery-overlay {
+        opacity: 1;
+    }
+
+    /* Label pinned to the bottom */
+    .gallery-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 0.85rem 0.85rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        transform: translateY(4px);
+        transition: transform 0.3s;
+    }
+    .group:hover .gallery-label {
+        transform: translateY(0);
+    }
+
+    .gallery-label-title {
+        font-size: 0.95rem;
+        color: #fff;
+        line-height: 1.25;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    .gallery-card-sm .gallery-label-title {
+        font-size: 0.82rem;
+    }
+
+    .gallery-label-loc {
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.65);
+    }
+
+    /* ─── Mobile ─── */
     @media (max-width: 640px) {
-        .featured-photo-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .gallery-row-1 {
+            grid-template-columns: 1fr;
         }
-        .featured-photo-large {
-            grid-column: 1 / -1;
+        .gallery-card-hero {
+            grid-row: auto;
         }
-        .featured-photo-large .photo-frame {
+        .gallery-row-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-card-hero .gallery-img-wrap {
             aspect-ratio: 16 / 9;
         }
     }

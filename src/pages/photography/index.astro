@@ -14,7 +14,7 @@ const photos = (await getCollection('photography')).sort(sortItemsByDateDesc);
 
         <div class="photo-grid">
             {photos.map((photo) => (
-                <article class="photo-item group">
+                <a href={`/photography/${photo.id}`} class="photo-item group block">
                     <div class="photo-frame overflow-hidden">
                         <Image
                             src={photo.data.coverImage.src}
@@ -36,7 +36,7 @@ const photos = (await getCollection('photography')).sort(sortItemsByDateDesc);
                             <p class="mt-1 text-sm opacity-70 leading-snug">{photo.data.description}</p>
                         )}
                     </div>
-                </article>
+                </a>
             ))}
         </div>
     </div>
