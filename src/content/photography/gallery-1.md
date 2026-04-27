@@ -12,8 +12,8 @@ Blah blah blah blah
 
 ​
 
-​
+![](/images/post-10.jpg)
 
-![](/images/C5E3ABE3-8B69-44D9-AF2F-CE69E0535FFD.png)
+​
 
 ​
