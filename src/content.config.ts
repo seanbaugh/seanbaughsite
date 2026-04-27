@@ -56,7 +56,10 @@ const photography = defineCollection({
         z.object({
             title: z.string(),
             description: z.string().optional(),
-            coverImage: imageSchema(image),
+            coverImage: z.object({
+                src: z.union([image(), z.string()]).optional(),
+                alt: z.string().optional()
+            }).optional(),
             publishDate: z.coerce.date(),
             isFeatured: z.boolean().default(false),
             location: z.string().optional(),

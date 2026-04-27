@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro';
+import CoverImage from '../components/CoverImage.astro';
 import Hero from '../components/Hero.astro';
 import PostPreview from '../components/PostPreview.astro';
 import siteConfig from '../data/site-config';
@@ -41,16 +41,14 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                                 class:list={['gallery-card group', i === 0 ? 'gallery-card-hero' : 'gallery-card-thumb']}
                             >
                                 <div class="gallery-img-wrap">
-                                    {photo.data.coverImage?.src && (
-                                        <Image
-                                            src={photo.data.coverImage.src}
-                                            alt={photo.data.coverImage.alt ?? photo.data.title}
-                                            width={i === 0 ? 900 : 500}
-                                            height={i === 0 ? 600 : 400}
-                                            class="gallery-img"
-                                            loading={i === 0 ? 'eager' : 'lazy'}
-                                        />
-                                    )}
+                                    <CoverImage
+                                        src={photo.data.coverImage?.src}
+                                        alt={photo.data.coverImage?.alt ?? photo.data.title}
+                                        width={i === 0 ? 900 : 500}
+                                        height={i === 0 ? 600 : 400}
+                                        class="gallery-img"
+                                        loading={i === 0 ? 'eager' : 'lazy'}
+                                    />
                                     <div class="gallery-overlay" aria-hidden="true"></div>
                                     <div class="gallery-label">
                                         <span class="gallery-label-title font-serif">{photo.data.title}</span>
@@ -71,16 +69,14 @@ const featuredPhotos = photos.filter(({ data }) => data.isFeatured);
                                 class="gallery-card gallery-card-sm group"
                             >
                                 <div class="gallery-img-wrap">
-                                    {photo.data.coverImage?.src && (
-                                        <Image
-                                            src={photo.data.coverImage.src}
-                                            alt={photo.data.coverImage.alt ?? photo.data.title}
-                                            width={500}
-                                            height={380}
-                                            class="gallery-img"
-                                            loading="lazy"
-                                        />
-                                    )}
+                                    <CoverImage
+                                        src={photo.data.coverImage?.src}
+                                        alt={photo.data.coverImage?.alt ?? photo.data.title}
+                                        width={500}
+                                        height={380}
+                                        class="gallery-img"
+                                        loading="lazy"
+                                    />
                                     <div class="gallery-overlay" aria-hidden="true"></div>
                                     <div class="gallery-label">
                                         <span class="gallery-label-title font-serif">{photo.data.title}</span>

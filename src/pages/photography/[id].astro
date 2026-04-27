@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import Button from '../../components/Button.astro';
+import CoverImage from '../../components/CoverImage.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
 
@@ -42,16 +42,14 @@ const { Content } = await render(photo);
 
         <!-- Hero image -->
         <div class="gallery-hero">
-            {coverImage?.src && (
-                <Image
-                    src={coverImage.src}
-                    alt={coverImage.alt ?? title}
-                    width={1200}
-                    height={800}
-                    class="gallery-hero-img"
-                    loading="eager"
-                />
-            )}
+            <CoverImage
+                src={coverImage?.src}
+                alt={coverImage?.alt ?? title}
+                width={1200}
+                height={800}
+                class="gallery-hero-img"
+                loading="eager"
+            />
         </div>
 
         <!-- Meta -->
