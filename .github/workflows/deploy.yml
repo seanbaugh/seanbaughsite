@@ -20,6 +20,34 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Sync CMS images to public/images
+        run: |
+          mkdir -p public/images
+          # Copy any images Sitebits stored in src/assets/images/ to public/images/
+          # so that /images/filename paths in markdown resolve correctly
+          if [ -d src/assets/images ]; then
+            cp -n src/assets/images/*.{jpg,jpeg,png,gif,webp,avif,svg} public/images/ 2>/dev/null || true
+          fi
+          # For any photography entry where coverImage.src is empty but the body
+          # contains an ![](…) image, backfill the frontmatter src field
+          node - <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const dir = 'src/content/photography';
+          for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.md'))) {
+            const fp = path.join(dir, file);
+            let content = fs.readFileSync(fp, 'utf8');
+            // Find empty src in frontmatter
+            if (!content.match(/coverImage:\s*\n\s+src:\s*""/)) continue;
+            // Find first markdown image in body
+            const imgMatch = content.match(/!\[.*?\]\((.+?)\)/);
+            if (!imgMatch) continue;
+            const imgSrc = imgMatch[1];
+            content = content.replace(/( {2}src:\s*)""\n/, `$1${imgSrc}\n`);
+            fs.writeFileSync(fp, content);
+            console.log(`Fixed coverImage.src in ${file} → ${imgSrc}`);
+          }
+          EOF
       - name: Install, build, and upload your site
         uses: withastro/action@v4
         # with:
