@@ -33,10 +33,6 @@ const siteConfig: SiteConfig = {
       text: "Blog",
       href: "/seanbaughsite/blog",
     },
-    {
-      text: "Tags",
-      href: "/seanbaughsite/tags",
-    },
   ],
   footerNavLinks: [
     {
