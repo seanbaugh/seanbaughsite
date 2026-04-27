@@ -16,6 +16,6 @@ Blah
 
 ​
 
-![](/images/about.jpg)
+![](/images/IMG_2889.jpeg)
 
 ​
