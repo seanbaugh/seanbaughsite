@@ -14,4 +14,4 @@ seo:
 
 ## Sean Baugh
 
-​
+​[https://raw.githubusercontent.com/seanbaugh/seanbaughsite/main/public/images/C5E3ABE3-8B69-44D9-AF2F-CE69E0535FFD.png](https://raw.githubusercontent.com/seanbaugh/seanbaughsite/main/public/images/C5E3ABE3-8B69-44D9-AF2F-CE69E0535FFD.png)​
